@@ -1,0 +1,19 @@
+ .head {
+	display: flex;
+	padding: 16px 120px;
+} 
+
+.head-left {
+	display: flex;
+	flex-direction: column; 
+	gap: 24px; 
+	align-items: flex-start;
+}
+
+.head-left-main{
+	display: flex;
+	flex-direction: column; 
+	justify-content: flex-start;
+	gap: 16px;
+	max-width: 588px;
+}

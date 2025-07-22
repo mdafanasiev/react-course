@@ -1,19 +1,15 @@
 import './App.css';
-import Header from './components/Header/Header';
-import Button from './components/Button/Button';
-import Paragraph from './components/Paragraph/Paragraph';
+import Head from './components/Layout/Head/Head';
+import NavigationBar from './components/Layout/NavigationBar/NavigationBar';
 
 function App() {
-	const searchTitle = 'Поиск';
-	const actionName = 'Искать';
-	const text = 'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.';
 	return (
 		<>
-			<Header title={searchTitle} />
-			<Button actionName={actionName} />
-			<Paragraph text={text} className='large-par'/>
+			<NavigationBar />
+			<Head /> 
 		</>
 	);
 }
 
 export default App;
+

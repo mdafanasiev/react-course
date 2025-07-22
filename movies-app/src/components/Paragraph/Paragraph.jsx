@@ -4,9 +4,7 @@ function Paragraph({text, className}) {
 	const cl = 'paragraph' + (className ? ' ' + className : '');
 
 	return (
-		<>
-			<p className={cl}>{text}</p>
-		</>
+		<div className={cl}>{text}</div>
 	);
 }
 
