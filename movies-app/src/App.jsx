@@ -1,12 +1,19 @@
 import './App.css';
 import Head from './components/Layout/Head/Head';
-import NavigationBar from './components/Layout/NavigationBar/NavigationBar';
+import Body from './components/Layout/Body/Body';
+import UpperBody from './components/Layout/UpperBody/UpperBody';
+import Search from './components/Search/Search';
 
 function App() {
+
 	return (
 		<>
-			<NavigationBar />
-			<Head /> 
+			<Head />
+			<Body>
+				<UpperBody>
+					<Search />
+				</UpperBody>
+			</Body>
 		</>
 	);
 }

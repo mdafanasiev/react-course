@@ -1,18 +1,5 @@
- .head {
-	display: flex;
-} 
-
-.head-left {
-	display: flex;
-	flex-direction: column; 
-	gap: 24px; 
-	align-items: flex-start;
-}
-
-.head-left__info{
-	display: flex;
-	flex-direction: column; 
-	justify-content: flex-start;
-	gap: 16px;
-	max-width: 588px;
+.head {
+	margin-bottom: 80px;
+	backdrop-filter: blur(40px);
+	background: rgba(18, 24, 41, 0.8);
 }

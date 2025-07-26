@@ -1,6 +1,6 @@
 import './NavigationBar.css';
-import NavigationElement from '../../NavigationElement/NavigationElement';
-import NavigationList from '../../NavigationList/NavigationList';
+import NavigationElement from '../NavigationElement/NavigationElement';
+import NavigationList from '../NavigationList/NavigationList';
 
 function NavigationBar() {
 	return (
