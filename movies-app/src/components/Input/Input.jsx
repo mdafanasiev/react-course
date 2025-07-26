@@ -10,7 +10,7 @@ function Input({ type, placeHolder, icon}) {
 	}
 
 	return (
-		<div class="input-wrapper input-with-icon">
+		<div className="input-wrapper input-with-icon">
 			<img src={icon.src} alt={icon.alt} />
 			<input type={type} placeholder={placeHolder} />
 		</div>

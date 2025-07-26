@@ -18,5 +18,5 @@ function SearchInput() {
 export default SearchInput;
 
 function pathToSearchIcon() {
-	return '/search.svg';
+	return '/icons/search.svg';
 }	

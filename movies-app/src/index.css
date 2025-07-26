@@ -4,10 +4,14 @@
   --font-size-default: 16px;
   --font-size-small: 14px;
   --color-bg: #121829;
-  --color-important-text: #ebeef5;
+  --color-headling-text: #ebeef5;
   --color-active-link: #fff;
   --color-inactive-link: #a8aebf;
   --color-paragraph-text: #8e95a9;
+  --color-action: #7b6ef6;
+  --color-active-action: #37d8a7;
+  --margin-bottom-default: 80px;
+  --movie-card-size: 282px;
 }
 
 * {
