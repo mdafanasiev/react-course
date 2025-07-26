@@ -11,7 +11,7 @@ function Head() {
 	return (
 		<div className="head">
 			<div className="head-left">
-				<div className="head-left-main">
+				<div className="head-left__info">
 					<Header title={searchTitle} />
 					<Paragraph text={searchText} className="" />
 				</div>

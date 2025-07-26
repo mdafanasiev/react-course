@@ -1,16 +1,32 @@
-.input{
+.input-wrapper{
+	font-size: var(--font-size-small);
+	background: var(--color-bg);
+	padding: 12px 16px;
+	border: 1px solid #323b54;
+	border-radius: 12px;
+	--color-placeholder-text: #475069;
+	--color-focus-text: #c2c8d7;
+}
+
+.input-wrapper input {
+	background-color: var(--color-bg);
+	outline: none;
 	border: none;
-	color: #475069;
-	font-size: 14px;
-	background: #121829;
 	width: 312px;
 }
 
-input::placeholder {
+.input-wrapper input::placeholder {
 	color: var(--color-placeholder-text); 
 }
 
 input:focus {
 	outline: none;
 	color: var(--color-focus-text);
+}
+
+.input-with-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
 }

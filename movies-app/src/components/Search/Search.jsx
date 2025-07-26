@@ -8,13 +8,14 @@ function Search() {
 	const placeHolder = 'Введите название';
 	const actionName = 'Искать';
 	const btnClick = (e) => console.log(e.target);
+	const icon = {
+		src: pathToSearchIcon(),
+		alt: 'Поиск'
+	};
 
 	return (
 		<div className="search">
-			<div className="search-input">
-				<img src={pathToSearchIcon()} alt="Поиск" />
-				<Input type="search" placeHolder={placeHolder} />
-			</div>
+			<Input type="search" icon={icon} placeHolder={placeHolder} />
 			<Button actionName={actionName} onClick={btnClick} />
 		</div>
 	);
@@ -24,4 +25,4 @@ export default Search;
 
 function pathToSearchIcon() {
 	return '/search.svg';
-}
+}	
