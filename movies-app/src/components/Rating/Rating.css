@@ -1,0 +1,15 @@
+.rating {
+	display: flex;
+	gap: 5px;
+	--color-rating: #ffad49;
+	border-radius: 8px;
+	padding: 4px 8px;
+	backdrop-filter: blur(8px);
+	background: rgba(0, 0, 0, 0.65);
+}
+
+.rating__value {
+	display: block;
+	line-height: 150%;
+	color: var(--color-rating);
+}

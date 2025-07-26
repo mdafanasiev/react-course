@@ -1,0 +1,60 @@
+{
+	"MoviesData": [
+    {
+		"id": 1,
+		"title": "Black widow",
+		"coverPath": "BlackWidow.png",
+		"inFavourites": false,
+		"rating": 324
+    },
+	{ 
+		"id": 2, 
+		"title": "Friends",
+		"coverPath": "Friends.png", 
+		"inFavourites": false,
+		"rating": 124 
+	},
+	{ 
+		"id": 3, 
+		"title": "How I Met Your Mother",
+		"coverPath": "HowiMetYourMother.png", 
+		"inFavourites": false,
+		"rating": 235 
+	},
+	{ 
+		"id": 4, 
+		"title": "Loki",
+		"coverPath": "Loki.png", 
+		"inFavourites": false,
+		"rating": 123 
+	},
+	{ 
+		"id": 5, 
+		"title": "Money Heist",
+		"coverPath": "MoneyHeist.png", 
+		"inFavourites": true,
+		"rating": 8125
+	},
+	{ 
+		"id": 6, 
+		"title": "Shang Chi",
+		"coverPath": "ShangChi.png", 
+		"inFavourites": false,
+		"rating": 123
+	},
+	{ 
+		"id": 7, 
+		"title": "The Big Bang Theory",
+		"coverPath": "TheBigBangTheory.png", 
+		"inFavourites": false,
+		"rating": 12 
+	},
+	{ 
+		"id": 8, 
+		"title": "Two And A Half Man",
+		"coverPath": "TwoAndAHalfMan.png", 
+		"inFavourites": false,
+		"rating": 456 
+	}	
+  ]
+}

@@ -1,0 +1,31 @@
+:root {
+  --font-weight-bold: 600;
+  --font-weight-regular: 400;
+  --font-size-default: 16px;
+  --font-size-small: 14px;
+  --color-bg: #121829;
+  --color-headling-text: #ebeef5;
+  --color-active-link: #fff;
+  --color-inactive-link: #a8aebf;
+  --color-paragraph-text: #8e95a9;
+  --color-action: #7b6ef6;
+  --color-active-action: #37d8a7;
+  --margin-bottom-default: 80px;
+  --movie-card-size: 282px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 16px 120px;
+  font-family: "Poppins", sans-serif;
+  font-weight: var(--font-weight-regular);
+  font-style: normal;
+  font-size: var(--font-size-default);
+  font-weight: var(--font-weight-regular);
+  background-color: var(--color-bg);
+} 
+

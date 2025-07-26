@@ -1,0 +1,19 @@
+.search {
+	display: flex;
+	flex-direction: column; 
+	gap: 24px; 
+	align-items: flex-start;
+	max-width: 588px;
+}
+
+.search__info{
+	display: flex;
+	flex-direction: column; 
+	justify-content: flex-start;
+	gap: 16px;
+}
+
+.search__main {
+	display: flex;
+	gap: 8px;
+}

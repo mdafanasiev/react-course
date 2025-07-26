@@ -1,0 +1,22 @@
+.favourite {
+	display: flex;
+	gap: 11px;
+	min-width: 134px;
+}
+
+.favourite img {
+	cursor: pointer;
+}
+.favourite__info {
+	display: block;
+	font-weight: var(--font-weight-bold);
+	line-height: 150%;
+	letter-spacing: 0.02em;
+	color: var(--color-action);
+}
+
+.favourite__info_active {
+	color: var(--color-active-action);
+}
+
+

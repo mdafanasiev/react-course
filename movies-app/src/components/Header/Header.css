@@ -1,0 +1,7 @@
+.header {
+	font-weight: var(--font-weight-bold);
+	font-size: 64px;
+	color: var(--color-headling-text);
+	line-height: 125%;
+	margin: 0;
+}
