@@ -1,6 +1,7 @@
 .header {
-	font-weight: 600;
+	font-weight: var(--font-weight-bold);
 	font-size: 64px;
-	color: #ebeef5;
-	height: 80px;
+	color: var(--color-important-text);
+	line-height: 150%;
+	margin: 0;
 }

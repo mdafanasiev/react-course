@@ -9,7 +9,10 @@ function NavigationBar() {
 			<NavigationList>
 				<NavigationElement text="Поиск фильмов" />
 				<NavigationElement text="Мои фильмы" />
-				<NavigationElement text="Войти" />
+				<div className="login">
+					<NavigationElement text="Войти" />
+					<img src='/login.svg' alt='Войти в личный кабинет' />
+				</div>
 			</NavigationList>
 		</nav>
 	);

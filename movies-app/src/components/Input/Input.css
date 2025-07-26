@@ -1,9 +1,16 @@
 .input{
 	border: none;
 	color: #475069;
-	font-weight: 400;
 	font-size: 14px;
 	background: #121829;
 	width: 312px;
 }
 
+input::placeholder {
+	color: var(--color-placeholder-text); 
+}
+
+input:focus {
+	outline: none;
+	color: var(--color-focus-text);
+}

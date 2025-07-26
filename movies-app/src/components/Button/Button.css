@@ -3,12 +3,11 @@
 	border-radius: 12px;
 	padding: 16px 32px;
 	background-color: #7b6ef6;
-	font-weight: 400;
-	font-size: 16px;
 	color: #fff;
 }
 
 .button:hover {
 	background-color: #3226a3;
 	border-color: #3226a3;
+	cursor: pointer;
 }
