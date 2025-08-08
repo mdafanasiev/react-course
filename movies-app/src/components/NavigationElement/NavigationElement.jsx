@@ -1,9 +1,9 @@
-import './NavigationElement.css';
+import styles from './NavigationElement.module.css';
 
 function NavigationElement({ text }) {
 	return (
 		<li>
-			<a className="nav-element" href="#">
+			<a className={styles['nav-element']} href="#">
 				{text}
 			</a>
 		</li>

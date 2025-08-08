@@ -1,20 +1,23 @@
-import './Favourite.css';
+import styles from './Favourite.module.css';
+import cn from 'classnames';
 
 function Favourite({ inFavourites }) {
 	
 	if (inFavourites) {
 		return (
-			<div className="favourite">
+			<div className={styles.favourite}>
 				<img src={pathToBookmark()} alt="В избранном" />
-				<span className="favourite__info favourite__info_active">В избранном</span>
+				<span className={cn(styles['favourite__info'], styles['favourite__info_active'])}>
+          В избранном
+				</span>
 			</div>
 		);
 	}
 
 	return (
-		<div className="favourite">
+		<div className={styles.favourite}>
 			<img src={pathToLike()} alt="В избранное" />
-			<span className="favourite__info">В избранное</span>
+			<span className={styles['favourite__info']}>В избранное</span>
 		</div>
 	);
 }

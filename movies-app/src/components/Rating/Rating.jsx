@@ -1,11 +1,11 @@
-import './Rating.css';
+import styles from './Rating.module.css';
 
 function Rating({ ratingValue }) {
 	const ratingIcon = '/icons/star.svg';
 	return (
-		<div className="rating">
+		<div className={styles.rating}>
 			<img src={ratingIcon} alt="Рейтинг" />
-			<span className="rating__value">{ratingValue}</span>
+			<span className={styles['rating__value']}>{ratingValue}</span>
 		</div>
 	);
 }

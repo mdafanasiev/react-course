@@ -1,5 +1,5 @@
 import Input from '../Input/Input';
-import './SearchInput.css';
+import styles from './SearchInput.module.css';
 
 function SearchInput() {
 	const placeHolder = 'Введите название';	
@@ -9,7 +9,7 @@ function SearchInput() {
 	};
 
 	return (
-		<div className="search-input">
+		<div className={styles['search-input']}>
 			<Input type="search" icon={icon} placeHolder={placeHolder} />
 		</div>
 	);
