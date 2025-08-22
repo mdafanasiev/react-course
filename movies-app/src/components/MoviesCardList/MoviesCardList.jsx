@@ -1,8 +1,8 @@
-import './MoviesCardList.css';
+import styles from './MoviesCardList.module.css';
 
 function MoviesCardList( { children} ) {
 	return (
-		<div className="movies-card-list">
+		<div className={styles['movies-card-list']}>
 			{children}
 		</div>
 	);

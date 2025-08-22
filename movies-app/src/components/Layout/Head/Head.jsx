@@ -1,9 +1,9 @@
 import NavigationBar from '../../NavigationBar/NavigationBar';
-import './Head.css';
+import styles from './Head.module.css';
 
 function Head() {
 	return (
-		<div className="head">
+		<div className={styles.head}>
 			<NavigationBar />
 		</div>
 	);

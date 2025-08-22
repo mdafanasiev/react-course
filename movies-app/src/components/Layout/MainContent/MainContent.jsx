@@ -1,7 +1,7 @@
-import './MainContent.css';
+import styles from './MainContent.module.css';
 
 function MainContent( { children } ) {
-	return <div className="main-content">{children}</div>;
+	return <div className={styles['main-content']}>{children}</div>;
 }
 
 export default MainContent;

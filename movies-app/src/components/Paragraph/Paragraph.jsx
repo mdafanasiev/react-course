@@ -1,7 +1,7 @@
-import './Paragraph.css';
+import styles from './Paragraph.module.css';
 
 function Paragraph({text, className}) {
-	const cl = 'paragraph' + (className ? ' ' + className : '');
+	const cl = styles.paragraph + (className ? ' ' + className : '');
 
 	return (
 		<div className={cl}>{text}</div>

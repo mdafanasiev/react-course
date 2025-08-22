@@ -1,6 +1,6 @@
 import Header from '../Header/Header';
 import Paragraph from '../Paragraph/Paragraph';
-import './Search.css';
+import styles from './Search.module.css';
 import Button from '../Button/Button';
 import SearchInput from '../SearchInput/SearchInput';
 
@@ -11,12 +11,12 @@ function Search() {
   	const btnClick = (e) => console.log(e.target);
 	
 	return (
-		<div className="search">
-			<div className="search__info">
+		<div className={styles.search}>
+			<div className={styles['search__info']}>
 				<Header title={searchTitle} />
 				<Paragraph text={searchText} className="" />
 			</div>
-			<div className="search__main">
+			<div className={styles['search__main']}>
 				<SearchInput />
 				<Button actionName={actionName} onClick={btnClick} />
 			</div>
