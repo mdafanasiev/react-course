@@ -1,15 +1,31 @@
 import styles from './NavigationBar.module.css';
 import NavigationElement from '../NavigationElement/NavigationElement';
 import NavigationList from '../NavigationList/NavigationList';
+import { UserContext } from '../../context/user.context';
+import { useContext, useEffect } from 'react';
 
 
-function NavigationBar({ users, dispatchUsers } ) {
+function NavigationBar() {
+	const { userName, setUserName } = useContext(UserContext);
 	
+	useEffect(() => {
+		const userList = JSON.parse(localStorage.getItem('users')) ?? [];
+		if (userList.length > 0) {
+			const loggedUser = userList.find((user) => user.isLogged);
+			if (loggedUser)
+				setUserName(loggedUser.name);
+		} 
+	}, []);
+
+
 	const logout = function () {
-		console.log(dispatchUsers);
-		dispatchUsers({
-			type: 'logout'
+		const loginKey = 'users';
+		let users = JSON.parse(localStorage.getItem(loginKey)) ?? [];
+		users.map((user) => { 
+			if (user.isLogged) user.isLogged = false;
 		});
+		localStorage.setItem(loginKey, JSON.stringify(users));
+		setUserName('');
 	};
 
 	return (
@@ -18,19 +34,21 @@ function NavigationBar({ users, dispatchUsers } ) {
 			<NavigationList>
 				<NavigationElement text="Поиск фильмов" />
 				<NavigationElement text="Мои фильмы" />
-				{!users.some((user) => user.isLogged)? (
+				{userName === '' ? (
 					<div className={styles.login}>
 						<NavigationElement text="Войти" />
 						<img src="/icons/login.svg" alt="Войти в личный кабинет" />
 					</div>
 				) : (
-					<div className={styles.login}>
-						<div className={styles.login__user}>
-							<NavigationElement text={users.find((u) => u.isLogged)?.name} />
-							<img src="/icons/user.svg" alt="Иконка пользователя" />
+					<>
+						<div className={styles.login}>
+							<div className={styles.login__user}>
+								<NavigationElement text={userName} />
+								<img src="/icons/user.svg" alt="Иконка пользователя" />
+							</div>
+							<NavigationElement text="Выйти" onClick={logout} />
 						</div>
-						<NavigationElement text="Выйти" onClick={logout} />
-					</div>
+					</>
 				)}
 			</NavigationList>
 		</nav>

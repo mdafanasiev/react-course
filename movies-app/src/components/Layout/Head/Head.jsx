@@ -1,10 +1,10 @@
 import NavigationBar from '../../NavigationBar/NavigationBar';
 import styles from './Head.module.css';
 
-function Head({users, dispatchUsers}) {
+function Head() {
 	return (
 		<div className={styles.head}>
-			<NavigationBar users={users} dispatchUsers={dispatchUsers} />
+			<NavigationBar />
 		</div>
 	);
 }
