@@ -1,6 +1,4 @@
-export const USER_INITIAL_STATE = {
-	users: []
-};
+export const USER_INITIAL_STATE = [];
 
 export function usersReducer(state, action) {
 	const loginKey = 'users';
@@ -12,18 +10,18 @@ export function usersReducer(state, action) {
 		if (currentUser) {
 			users.map((user) => user === currentUser ? user.isLogged = true : user.isLogged = false);
 			localStorage.setItem(loginKey, JSON.stringify(users));
-			return {users: users};
+			return users;
 		}
 		users.push({ name: userName, isLogged: true });
 		localStorage.setItem(loginKey, JSON.stringify(users));
-		return {users: users};
+		return users;
 	}
 	case 'logout': {
 		users.map((user) => { 
 			if (user.isLogged) user.isLogged = false;
 		});
 		localStorage.setItem(loginKey, JSON.stringify(users));
-		return {users: users};	
+		return users;	
 	}
 	}
 }

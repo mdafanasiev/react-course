@@ -19,7 +19,7 @@ function NavigationBar() {
 			<NavigationList>
 				<NavigationElement text="Поиск фильмов" />
 				<NavigationElement text="Мои фильмы" />
-				{!users.users.length ? (
+				{!users.length ? (
 					<div className={styles.login}>
 						<NavigationElement text="Войти" />
 						<img src="/icons/login.svg" alt="Войти в личный кабинет" />
@@ -27,7 +27,7 @@ function NavigationBar() {
 				) : (
 					<div className={styles.login}>
 						<div className={styles.login__user}>
-							<NavigationElement text={users.users.find((u) => u.isLogged).name} />
+							<NavigationElement text={users.find((u) => u.isLogged)?.name} />
 							<img src="/icons/user.svg" alt="Иконка пользователя" />
 						</div>
 						<NavigationElement text="Выйти" onClick={logout} />
