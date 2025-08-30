@@ -1,6 +1,7 @@
+import { forwardRef } from 'react';
 import styles from './Button.module.css';
 
-function Button	({ actionName, onClick, ref}) {
+const Button = forwardRef(({ actionName, onClick}, ref) => {
 	return (
 		<>
 			<button ref= {ref} className={styles.button} onClick={onClick}>
@@ -8,6 +9,6 @@ function Button	({ actionName, onClick, ref}) {
 			</button>
 		</>
 	);
-}
+});
 
 export default Button;

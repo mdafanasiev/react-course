@@ -1,7 +1,8 @@
+import { forwardRef } from 'react';
 import styles from './Input.module.css';
 import cn from 'classnames';
 
-function Input({ type, placeHolder, icon, ref, onChange}) {
+const Input = forwardRef(({ type, placeHolder, icon, onChange }, ref) => {
 	if (icon === undefined) {
 		return (
 			<div className={styles['input-wrapper']}>
@@ -26,6 +27,6 @@ function Input({ type, placeHolder, icon, ref, onChange}) {
 			/>
 		</div>
 	);
-}
+});
 
 export default Input;
