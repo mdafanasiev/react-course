@@ -13,6 +13,7 @@
 	outline: none;
 	border: none;
 	width: 312px;
+	color: var(--color-focus-text);
 }
 
 .input-wrapper input::placeholder {
@@ -21,7 +22,6 @@
 
 input:focus {
 	outline: none;
-	color: var(--color-focus-text);
 }
 
 .input-with-icon {

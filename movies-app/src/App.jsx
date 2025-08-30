@@ -6,8 +6,10 @@ import Search from './components/Search/Search';
 import MainContent from './components/Layout/MainContent/MainContent';
 import MoviesCardList from './components/MoviesCardList/MoviesCardList';
 import MovieCard from './components/MovieCard/MovieCard';
+import Login from './components/Login/Login';
 
 function App() {
+
 	const MoviesCardsData = [
 		{
 			id: 1,
@@ -67,7 +69,6 @@ function App() {
 		}	
 	  ];
 
-
 	return (
 		<>
 			<Head />
@@ -77,15 +78,13 @@ function App() {
 				</UpperBody>
 				<MainContent>
 					<MoviesCardList>
-						{MoviesCardsData.map(cardData =>
-							<MovieCard 
-								key={cardData.id} 
-								cardData={cardData}
-							/>
-						)}
+						{MoviesCardsData.map((cardData) => (
+							<MovieCard key={cardData.id} cardData={cardData} />
+						))}
 					</MoviesCardList>
 				</MainContent>
 			</Body>
+			<Login />
 		</>
 	);
 }
