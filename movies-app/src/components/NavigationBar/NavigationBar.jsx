@@ -1,17 +1,16 @@
 import styles from './NavigationBar.module.css';
 import NavigationElement from '../NavigationElement/NavigationElement';
 import NavigationList from '../NavigationList/NavigationList';
-import { useEffect, useReducer } from 'react';
-import { USER_INITIAL_STATE, usersReducer } from '../../App.state.js';
 
-function NavigationBar() {
-	const [users, dispatchUsers] = useReducer(usersReducer, USER_INITIAL_STATE);
 
+function NavigationBar({ users, dispatchUsers } ) {
+	
 	const logout = function () {
+		console.log(dispatchUsers);
 		dispatchUsers({
 			type: 'logout'
 		});
-	};	
+	};
 
 	return (
 		<nav className={styles['nav-bar']}>
@@ -19,7 +18,7 @@ function NavigationBar() {
 			<NavigationList>
 				<NavigationElement text="Поиск фильмов" />
 				<NavigationElement text="Мои фильмы" />
-				{!users.length ? (
+				{!users.some((user) => user.isLogged)? (
 					<div className={styles.login}>
 						<NavigationElement text="Войти" />
 						<img src="/icons/login.svg" alt="Войти в личный кабинет" />

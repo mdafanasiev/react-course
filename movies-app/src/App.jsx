@@ -7,8 +7,19 @@ import MainContent from './components/Layout/MainContent/MainContent';
 import MoviesCardList from './components/MoviesCardList/MoviesCardList';
 import MovieCard from './components/MovieCard/MovieCard';
 import Login from './components/Login/Login';
-
+import { useEffect, useReducer } from 'react';
+import { USER_INITIAL_STATE, usersReducer } from './App.state.js';
 function App() {
+	const [users, dispatchUsers] = useReducer(usersReducer, USER_INITIAL_STATE);;
+	
+	useEffect(() => {
+		const userList = JSON.parse(localStorage.getItem('users')) ?? [];
+		if (userList.length > 0) {
+			const loggedUser = userList.find((user) => user.isLogged);
+			if (loggedUser)
+      			dispatchUsers({type: 'login', payload: {name : loggedUser.name}});
+		}
+	}, []);
 
 	const MoviesCardsData = [
 		{
@@ -71,7 +82,7 @@ function App() {
 
 	return (
 		<>
-			<Head />
+			<Head users={users} dispatchUsers={dispatchUsers} />
 			<Body>
 				<UpperBody>
 					<Search />
@@ -84,7 +95,7 @@ function App() {
 					</MoviesCardList>
 				</MainContent>
 			</Body>
-			<Login />
+			<Login users={users} dispatchUsers={dispatchUsers} />
 		</>
 	);
 }

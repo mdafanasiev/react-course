@@ -4,7 +4,7 @@ import styles from './Head.module.css';
 function Head({users, dispatchUsers}) {
 	return (
 		<div className={styles.head}>
-			<NavigationBar users={users} dispatchUsers={dispatchUsers}/>
+			<NavigationBar users={users} dispatchUsers={dispatchUsers} />
 		</div>
 	);
 }

@@ -1,13 +1,11 @@
-import {useReducer, useRef } from 'react';
+import {useRef } from 'react';
 import Button from '../Button/Button';
 import Header from '../Header/Header';
 import Input from '../Input/Input';
 import styles from './Login.module.css';
-import { USER_INITIAL_STATE, usersReducer } from '../../App.state.js';
 
-function Login() {
+function Login({ users, dispatchUsers }) {
 	const title = 'Вход';
-	const [users, dispatchUsers] = useReducer(usersReducer, USER_INITIAL_STATE);
 	
 	const inputRef = useRef();
 	const btnRef = useRef();
