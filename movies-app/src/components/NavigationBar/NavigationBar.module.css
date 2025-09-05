@@ -7,5 +7,10 @@
 
 .login {
 	display: flex;
-	gap: 11px;
+	gap: 8px;
+}
+
+.login__user {
+	display: flex;
+	gap: 8px;
 }

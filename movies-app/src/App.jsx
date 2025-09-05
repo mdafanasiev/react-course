@@ -6,8 +6,10 @@ import Search from './components/Search/Search';
 import MainContent from './components/Layout/MainContent/MainContent';
 import MoviesCardList from './components/MoviesCardList/MoviesCardList';
 import MovieCard from './components/MovieCard/MovieCard';
-
+import Login from './components/Login/Login';
+import { UserContextProvider } from './context/user.context.jsx';
 function App() {
+
 	const MoviesCardsData = [
 		{
 			id: 1,
@@ -67,9 +69,8 @@ function App() {
 		}	
 	  ];
 
-
 	return (
-		<>
+		<UserContextProvider>
 			<Head />
 			<Body>
 				<UpperBody>
@@ -77,16 +78,14 @@ function App() {
 				</UpperBody>
 				<MainContent>
 					<MoviesCardList>
-						{MoviesCardsData.map(cardData =>
-							<MovieCard 
-								key={cardData.id} 
-								cardData={cardData}
-							/>
-						)}
+						{MoviesCardsData.map((cardData) => (
+							<MovieCard key={cardData.id} cardData={cardData} />
+						))}
 					</MoviesCardList>
 				</MainContent>
 			</Body>
-		</>
+			<Login />
+		</UserContextProvider>
 	);
 }
 
