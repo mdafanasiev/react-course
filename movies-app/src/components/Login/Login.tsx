@@ -1,4 +1,4 @@
-import {useContext, useRef } from 'react';
+import {RefObject, useContext, useRef } from 'react';
 import Button from '../Button/Button';
 import Header from '../Header/Header';
 import Input from '../Input/Input';
@@ -9,13 +9,20 @@ function Login() {
 	const title = 'Вход';
 	const { setUserName } = useContext(UserContext);
 	
-	const inputRef = useRef();
-	const btnRef = useRef();
-	
+	const inputRef = useRef<HTMLInputElement>(null);
+	const btnRef = useRef<HTMLButtonElement>(null);
+	let username: string; 
+	type UserInfo = {
+		name: string,
+		isLogged: boolean
+	}
+
 	const login = function() {
-		const loginKey = 'users';
-		const username = inputRef.current.value;
-		let users = JSON.parse(localStorage.getItem(loginKey)) ?? [];
+		const loginKey: string = 'users';
+		if (inputRef.current)
+			username = inputRef.current.value;
+		
+		let users: UserInfo[] = JSON.parse(localStorage.getItem(loginKey) ?? "") ?? [];
 		let currentUser = users.find((user) => user.name === username);
 		
 		if (currentUser) {
@@ -29,9 +36,10 @@ function Login() {
 			localStorage.setItem(loginKey, JSON.stringify(users));
 		}
 
-
-		setUserName(inputRef.current.value);
-		inputRef.current.value = '';	
+		if (inputRef.current) {
+		  setUserName!(inputRef.current.value);
+          inputRef.current.value = "";	
+		}
 	};
 
 	return (
@@ -40,7 +48,7 @@ function Login() {
 			<Input
 				ref={inputRef}
 				type="text"
-				placeHolder="Ваше имя"
+				placeholder='Ваше имя'
 			/>
 			<Button ref={btnRef} actionName="Войти в профиль" onClick={login} />
 		</div>

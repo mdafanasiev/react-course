@@ -1,6 +1,7 @@
 import styles from './NavigationList.module.css';
+import { NavigationListProps } from './NavigationList.props';
 
-function NavigationList({ children }) {
+function NavigationList({ children }: NavigationListProps) {
 	return (
 		<ul className={styles['nav-list']}>
 			{children}

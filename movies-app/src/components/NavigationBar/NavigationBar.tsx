@@ -1,31 +1,39 @@
 import styles from './NavigationBar.module.css';
+import { useContext, useEffect } from 'react';
+import { UserContext } from '../../context/user.context';
 import NavigationElement from '../NavigationElement/NavigationElement';
 import NavigationList from '../NavigationList/NavigationList';
-import { UserContext } from '../../context/user.context';
-import { useContext, useEffect } from 'react';
 
 
 function NavigationBar() {
 	const { userName, setUserName } = useContext(UserContext);
-	
+
+	type UserInfo = {
+      name: string;
+      isLogged: boolean;
+    };
+
+	let users: UserInfo[];
+
 	useEffect(() => {
-		const userList = JSON.parse(localStorage.getItem('users')) ?? [];
-		if (userList.length > 0) {
-			const loggedUser = userList.find((user) => user.isLogged);
-			if (loggedUser)
-				setUserName(loggedUser.name);
+		const loginKey: string = 'users';
+		users = JSON.parse(localStorage.getItem(loginKey) ?? "") ?? [];
+		if (users.length > 0) {
+			const loggedUser = users.find((user) => user.isLogged);
+			if (loggedUser) 
+				setUserName!(loggedUser.name);
 		} 
 	}, []);
 
 
 	const logout = function () {
 		const loginKey = 'users';
-		let users = JSON.parse(localStorage.getItem(loginKey)) ?? [];
+		users = JSON.parse(localStorage.getItem(loginKey) ?? "") ?? [];
 		users.map((user) => { 
 			if (user.isLogged) user.isLogged = false;
 		});
 		localStorage.setItem(loginKey, JSON.stringify(users));
-		setUserName('');
+		setUserName!('');
 	};
 
 	return (

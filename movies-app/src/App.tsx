@@ -4,10 +4,10 @@ import Body from './components/Layout/Body/Body';
 import UpperBody from './components/Layout/UpperBody/UpperBody';
 import Search from './components/Search/Search';
 import MainContent from './components/Layout/MainContent/MainContent';
-import MoviesCardList from './components/MoviesCardList/MoviesCardList';
 import MovieCard from './components/MovieCard/MovieCard';
 import Login from './components/Login/Login';
-import { UserContextProvider } from './context/user.context.jsx';
+import { UserContextProvider } from './context/user.context.js';
+import MoviesCardList from './components/MoviesCardList/MoviesCardList';
 function App() {
 
 	const MoviesCardsData = [

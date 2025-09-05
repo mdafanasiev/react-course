@@ -1,6 +1,7 @@
 import styles from './Rating.module.css';
+import { RatingProps } from './Rating.props';
 
-function Rating({ ratingValue }) {
+function Rating({ ratingValue }: RatingProps) {
 	const ratingIcon = '/icons/star.svg';
 	return (
 		<div className={styles.rating}>
