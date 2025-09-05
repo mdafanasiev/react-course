@@ -1,7 +1,8 @@
 import styles from './Favourite.module.css';
 import cn from 'classnames';
+import { FavouriteProps } from './Favourite.props';
 
-function Favourite({ inFavourites }) {
+function Favourite({ inFavourites }: FavouriteProps) {
 	
 	if (inFavourites) {
 		return (

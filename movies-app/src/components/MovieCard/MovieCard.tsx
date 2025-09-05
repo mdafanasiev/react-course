@@ -1,8 +1,9 @@
 import styles from './MovieCard.module.css';
 import Favourite from '../Favourite/Favourite';
 import Rating from '../Rating/Rating';
+import { MovieCardProps } from './MovieCard.props';
 
-function MovieCard( { cardData } ) {
+function MovieCard( { cardData }: MovieCardProps ) {
 	const coversFolder = '/MoviesCovers/';
 	const title = cardData.title;
 	const filename = cardData.filename;

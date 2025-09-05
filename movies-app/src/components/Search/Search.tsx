@@ -3,12 +3,13 @@ import Paragraph from '../Paragraph/Paragraph';
 import styles from './Search.module.css';
 import Button from '../Button/Button';
 import SearchInput from '../SearchInput/SearchInput';
+import { MouseEvent } from 'react';
 
 function Search() {
 	const searchTitle = 'Поиск';
 	const searchText = 'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.';
 	const actionName = 'Искать';
-  	const btnClick = (e) => console.log(e.target);
+  	const btnClick = (e: MouseEvent) => console.log(e.target);
 	
 	return (
 		<div className={styles.search}>

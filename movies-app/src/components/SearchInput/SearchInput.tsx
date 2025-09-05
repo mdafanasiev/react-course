@@ -10,7 +10,7 @@ function SearchInput() {
 
 	return (
 		<div className={styles['search-input']}>
-			<Input type="search" icon={icon} placeHolder={placeHolder} />
+			<Input type="search" icon={icon} placeholder={placeHolder} />
 		</div>
 	);
 }
