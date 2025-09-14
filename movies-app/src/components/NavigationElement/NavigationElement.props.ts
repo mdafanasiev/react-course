@@ -1,5 +1,5 @@
 import { AnchorHTMLAttributes } from "react";
 
-export interface NavigationElementProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface NavigationElementProps {
   text: string
 }

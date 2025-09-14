@@ -1,7 +1,7 @@
 import {RefObject, useContext, useRef } from 'react';
-import Button from '../Button/Button';
-import Header from '../Header/Header';
-import Input from '../Input/Input';
+import Button from '../../components/Button/Button';
+import Header from '../../components/Header/Header';
+import Input from '../../components/Input/Input';
 import styles from './Login.module.css';
 import { UserContext } from '../../context/user.context';
 
@@ -11,7 +11,6 @@ function Login() {
 	
 	const inputRef = useRef<HTMLInputElement>(null);
 	const btnRef = useRef<HTMLButtonElement>(null);
-	let username: string; 
 	type UserInfo = {
 		name: string,
 		isLogged: boolean
@@ -19,10 +18,16 @@ function Login() {
 
 	const login = function() {
 		const loginKey: string = 'users';
-		if (inputRef.current)
-			username = inputRef.current.value;
+		const username = inputRef.current ? inputRef.current.value : '';
 		
-		let users: UserInfo[] = JSON.parse(localStorage.getItem(loginKey) ?? "") ?? [];
+		let users: UserInfo[];
+		const items = localStorage.getItem(loginKey);
+
+        if (items)
+			 users = JSON.parse(items);
+        else 
+			users = [];
+		
 		let currentUser = users.find((user) => user.name === username);
 		
 		if (currentUser) {
@@ -35,24 +40,19 @@ function Login() {
 			users.map((user) => { if(user !== currentUser) user.isLogged = false;});
 			localStorage.setItem(loginKey, JSON.stringify(users));
 		}
-
-		if (inputRef.current) {
-		  setUserName!(inputRef.current.value);
-          inputRef.current.value = "";	
-		}
+		
+		setUserName!(username);
+		
+		inputRef.current!.value = "";	
 	};
 
 	return (
-		<div className={styles.login}>
-			<Header title={title} />
-			<Input
-				ref={inputRef}
-				type="text"
-				placeholder='Ваше имя'
-			/>
-			<Button ref={btnRef} actionName="Войти в профиль" onClick={login} />
-		</div>
-	);
+      <div className={styles.login}>
+        <Header title={title} appearance='big' />
+        <Input ref={inputRef} type="text" placeholder="Ваше имя" />
+        <Button ref={btnRef} actionName="Войти в профиль" onClick={login} />
+      </div>
+  );
 }
 
 export default Login;

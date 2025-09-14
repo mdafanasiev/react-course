@@ -1,12 +1,12 @@
 .movies-card-list {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(var(--movie-card-size), 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(var(--movie-card-size-small), 1fr));
 	gap: 32px 16px;
 }
 
 @media (max-width: 810px) {
 	.movies-card-list {
-		grid-template-columns: var(--movie-card-size);
+		grid-template-columns: var(--movie-card-size-small);
 		grid-auto-flow: row;
 		justify-content: center;
 	}

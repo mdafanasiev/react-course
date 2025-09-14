@@ -14,7 +14,7 @@ function Search() {
 	return (
 		<div className={styles.search}>
 			<div className={styles['search__info']}>
-				<Header title={searchTitle} />
+				<Header title={searchTitle} appearance='big'/>
 				<Paragraph text={searchText} className="" />
 			</div>
 			<div className={styles['search__main']}>

@@ -1,3 +1,4 @@
 export interface HeaderProps {
-	title: string
+	title: string,
+	appearance: 'big' | 'small' | 'medium'
 }
