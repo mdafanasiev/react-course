@@ -1,53 +1,57 @@
-import { useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import TextArea from "../../components/TextArea/TextArea";
 import styles from './Movie.module.css'
 import Header from "../../components/Header/Header";
 import Body from "../../components/Layout/Body/Body";
 import { MoviesContext } from "../../context/movies.context";
-import { useContext, useEffect } from "react";
+import { MouseEvent, useContext, useEffect } from "react";
 import MovieCover from "../../components/MovieCover/MovieCover";
 import Rating from "../../components/Rating/Rating";
 import Favourite from "../../components/Favourite/Favourite";
 import MovieInfo from "../../components/MovieInfo/MovieInfo";
+import { MovieDetails } from "../../interfaces/movies.interface";
 
 function Movie() {
-  const { id: paramID } = useParams();
-  const id = Number(paramID);
-  const { movies } = useContext(MoviesContext);
-  const movie = movies.find((movie) => movie.id === id);
+  const { movies, setMovies } = useContext(MoviesContext);
+  const movie = useLoaderData() as MovieDetails;
+
+  const favouritesHandler = function(e: MouseEvent) {
+      const _movies = [...movies];
+      const mv = _movies.find((mv) => mv.id === movie.id);
+      if (mv) {
+        mv.inFavorites = !mv.inFavorites;
+      }
+      setMovies!(_movies);
+    }
+
   return (
     <>
       <Body>
         <TextArea>
           <div className={styles["text-content"]}>
             <span className={styles["action-name"]}> Поиск фильмов</span>
-            <Header title={movie?.title ?? ''} appearance="medium" />
+            <Header title={movie?.title ?? ""} appearance="medium" />
           </div>
         </TextArea>
         <div className={styles.movie}>
           <div className={styles["movie__cover"]}>
-            <MovieCover size="big" path={movie?.filename ?? ""} />
+            <MovieCover size="big" path={movie?.image ?? ""} />
           </div>
           <div className={styles["movie__desc"]}>
             <div className={styles["movie__desc_text"]}>
-              After the devastating events of Avengers: Infinity War, the
-              universe is in ruins due to the efforts of the Mad Titan, Thanos.
-              With the help of remaining allies, the Avengers must assemble once
-              more in order to undo Thanos' actions and restore order to the
-              universe once and for all, no matter what consequences may be in
-              store.
+              {movie.description}
             </div>
             <div className={styles["movie__desc_rating"]}>
               <Rating ratingValue={movie?.rating ?? 0} />
-              <Favourite inFavourites={movie?.inFavourites ?? false} />
+              <Favourite
+                inFavorites={movie?.inFavorites ?? false}
+                onClick={favouritesHandler}
+              />
             </div>
-            <MovieInfo info="Тип" value="Movie" />
-            <MovieInfo info="Дата выхода" value="2019-04-24" />
-            <MovieInfo info="Длительность" value="181 мин" />
-            <MovieInfo
-              info="Жанр"
-              value="Adventure,  Science Fiction, Action"
-            />
+            <MovieInfo info="Тип" value={movie.type} />
+            <MovieInfo info="Дата выхода" value={String(movie?.releaseDate)} />
+            <MovieInfo info="Длительность" value={getDuration(movie.duration)} />
+            <MovieInfo info="Жанр" value={movie.genre.join(", ")} />
           </div>
         </div>
       </Body>
@@ -80,3 +84,45 @@ function Movie() {
 }
 
 export default Movie;
+
+
+function getDuration(duration: string) {
+  const durationStr = duration.slice(2);
+  const res = durationStr
+    .replace("H", " час ")
+    .replace("M", " минут ")
+    .replace("S", " секунд ");
+
+  /* const ruOrdinalRules = new Intl.PluralRules("ru", { type: "cardinal" });
+  console.log(ruOrdinalRules);
+  
+  const suffixes = {
+    H: new Map([
+      ["one", "час"],
+      ["two", "часа"],
+      ["few", "часов"],
+      ["other", "часов"],
+    ]),
+    M: new Map([
+      ["one", "минута"],
+      ["two", "минуты"],
+      ["few", "минут"],
+      ["other", "минут"],
+    ]),
+    S: new Map([
+      ["one", "секунда"],
+      ["two", "секунды"],
+      ["few", "секунд"],
+      ["other", "секунд"],
+    ]),
+  };
+
+
+  const formatOrdinals = (n: number, type: 'H' | 'M' | 'S') => {
+    const rule = ruOrdinalRules.select(n);
+    const suffix = suffixes[type].get(rule);
+    return `${n} ${suffix}`;
+  }; */
+
+  return res;
+}

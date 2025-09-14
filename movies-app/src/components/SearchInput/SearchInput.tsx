@@ -1,19 +1,22 @@
+import { forwardRef, InputHTMLAttributes } from 'react';
 import Input from '../Input/Input';
 import styles from './SearchInput.module.css';
+import { InputProps } from '../Input/Input.props';
 
-function SearchInput() {
-	const placeHolder = 'Введите название';	
-	const icon = {
+const SearchInput = forwardRef<HTMLInputElement, InputProps>( ({...props}, ref) => 
+	{
+		const placeHolder = "Введите название";
+		const icon = {
 		src: pathToSearchIcon(),
-		alt: 'Поиск'
-	};
+		alt: "Поиск",
+		};
 
-	return (
-		<div className={styles['search-input']}>
-			<Input type="search" icon={icon} placeholder={placeHolder} />
+		return (
+		<div className={styles["search-input"]}>
+			<Input ref={ref} type="search" icon={icon} placeholder={placeHolder} />
 		</div>
-	);
-}
+		);
+	})
 
 export default SearchInput;
 
