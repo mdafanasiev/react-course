@@ -5,11 +5,11 @@ import App from './App';
 import {createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Head from './components/Layout/Head/Head';
 import { UserContextProvider } from './context/user.context';
-import Login from './components/Login/Login';
 import Favorites from './pages/Favorites/Favorites';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import { MoviesContextProvider } from './context/movies.context';
 import Movie from './pages/Movie/Movie';
+import LoginPage from './pages/LoginPage/LoginPage';
 
  const router = createBrowserRouter([
    {
@@ -22,7 +22,7 @@ import Movie from './pages/Movie/Movie';
        },
        {
          path: "/login",
-         element: <Login />,
+         element: <LoginPage />,
        },
        {
          path: "/movie/:id",
@@ -43,9 +43,7 @@ createRoot(document.getElementById("root") as Element).render(
   <StrictMode>
     <UserContextProvider>
       <MoviesContextProvider>
-        <RouterProvider router={router}>
-          <App />
-        </RouterProvider>
+        <RouterProvider router={router} />
       </MoviesContextProvider>
     </UserContextProvider>
   </StrictMode>
