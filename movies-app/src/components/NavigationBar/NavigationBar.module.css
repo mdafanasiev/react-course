@@ -5,12 +5,14 @@
 	justify-content: space-between;	
 }
 
-.login {
+.login, .login__user {
 	display: flex;
 	gap: 8px;
+	align-items: center;
 }
 
-.login__user {
-	display: flex;
-	gap: 8px;
+.login img, .login__user img  {
+	width: 24px;
+	height: 24px;
 }
+

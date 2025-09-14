@@ -1,14 +1,12 @@
 import styles from './NavigationElement.module.css';
 import { NavigationElementProps } from './NavigationElement.props';
 
-function NavigationElement({ text, ...props }: NavigationElementProps) {
+function NavigationElement({ text }: NavigationElementProps) {
 	return (
-		<li>
-			<a className={styles['nav-element']} href="#" {...props}>
-				{text}
-			</a>
-		</li>
-	);
+    <li className={styles["nav-element"]}>
+      {text}
+    </li>
+  );
 }
 
 export default NavigationElement;

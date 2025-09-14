@@ -1,13 +1,13 @@
 import styles from './NavigationBar.module.css';
 import { useContext, useEffect } from 'react';
-import { UserContext } from '../../context/user.context';
 import NavigationElement from '../NavigationElement/NavigationElement';
 import NavigationList from '../NavigationList/NavigationList';
+import { UserContext } from '../../context/user.context';
+import { NavLink } from 'react-router-dom';
 
 
 function NavigationBar() {
 	const { userName, setUserName } = useContext(UserContext);
-
 	type UserInfo = {
       name: string;
       isLogged: boolean;
@@ -16,19 +16,29 @@ function NavigationBar() {
 	let users: UserInfo[];
 
 	useEffect(() => {
-		const loginKey: string = 'users';
-		users = JSON.parse(localStorage.getItem(loginKey) ?? "") ?? [];
-		if (users.length > 0) {
-			const loggedUser = users.find((user) => user.isLogged);
-			if (loggedUser) 
-				setUserName!(loggedUser.name);
-		} 
-	}, []);
+    const loginKey: string = "users";
+    const items = localStorage.getItem(loginKey);
 
+    if (items) users = JSON.parse(items);
+    else users = [];
+
+    if (users.length > 0) {
+      const loggedUser = users.find((user) => user.isLogged);
+      if (loggedUser) {
+        setUserName!(loggedUser.name);
+      } 
+    }
+  }, []);
 
 	const logout = function () {
 		const loginKey = 'users';
-		users = JSON.parse(localStorage.getItem(loginKey) ?? "") ?? [];
+		const items = localStorage.getItem(loginKey);
+
+		if (items) 
+			users = JSON.parse(items);
+		else 
+			users = [];
+		
 		users.map((user) => { 
 			if (user.isLogged) user.isLogged = false;
 		});
@@ -37,30 +47,39 @@ function NavigationBar() {
 	};
 
 	return (
-		<nav className={styles['nav-bar']}>
-			<img src="/icons/logo.svg" alt="Логотип" />
-			<NavigationList>
-				<NavigationElement text="Поиск фильмов" />
-				<NavigationElement text="Мои фильмы" />
-				{userName === '' ? (
-					<div className={styles.login}>
-						<NavigationElement text="Войти" />
-						<img src="/icons/login.svg" alt="Войти в личный кабинет" />
-					</div>
-				) : (
-					<>
-						<div className={styles.login}>
-							<div className={styles.login__user}>
-								<NavigationElement text={userName} />
-								<img src="/icons/user.svg" alt="Иконка пользователя" />
-							</div>
-							<NavigationElement text="Выйти" onClick={logout} />
-						</div>
-					</>
-				)}
-			</NavigationList>
-		</nav>
-	);
+    <nav className={styles["nav-bar"]}>
+      <img src="/icons/logo.svg" alt="Логотип" />
+      <NavigationList>
+        <NavLink to="/">
+          <NavigationElement text="Поиск фильмов" />
+        </NavLink>
+        <NavLink to="/favorites">
+          <NavigationElement text="Мои фильмы" />
+        </NavLink>
+
+        {userName === "" ? (
+          <div className={styles.login}>
+            <NavLink to="/login">
+              <NavigationElement text="Войти" />
+            </NavLink>
+            <img src="/icons/login.svg" alt="Войти в личный кабинет" />
+          </div>
+        ) : (
+          <>
+            <div className={styles.login}>
+              <div className={styles.login__user}>
+                <NavigationElement text={userName} />
+                <img src="/icons/user.svg" alt="Иконка пользователя" />
+              </div>
+              <NavLink to="/login" onClick={logout}>
+                <NavigationElement text="Выйти" />
+              </NavLink>
+            </div>
+          </>
+        )}
+      </NavigationList>
+    </nav>
+  );
 }
 
 export default NavigationBar;

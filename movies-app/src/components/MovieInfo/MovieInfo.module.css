@@ -1,0 +1,17 @@
+.movie-info {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.info {
+	font-size: var(--font-size-default);
+	line-height: 150%;
+	color: #767e94;
+}
+
+.value {
+	font-size: 20px;
+	line-height: 160%;
+	color: #c3c8d4;
+}

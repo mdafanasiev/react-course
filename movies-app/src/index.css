@@ -3,6 +3,8 @@
   --font-weight-regular: 400;
   --font-size-default: 16px;
   --font-size-small: 14px;
+  --font-size-medium: 32px;
+  --font-size-big: 64px;
   --color-bg: #121829;
   --color-headling-text: #ebeef5;
   --color-active-link: #fff;
@@ -11,7 +13,9 @@
   --color-action: #7b6ef6;
   --color-active-action: #37d8a7;
   --margin-bottom-default: 80px;
-  --movie-card-size: 282px;
+  --movie-card-size-small: 282px;
+  --movie-card-size-small: 282px;
+  --movie-card-size-small: 282px;
 }
 
 * {
@@ -19,7 +23,7 @@
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
   padding: 16px 120px;
   font-family: "Poppins", sans-serif;
   font-weight: var(--font-weight-regular);

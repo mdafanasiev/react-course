@@ -6,7 +6,7 @@ function Rating({ ratingValue }: RatingProps) {
 	return (
 		<div className={styles.rating}>
 			<img src={ratingIcon} alt="Рейтинг" />
-			<span className={styles['rating__value']}>{ratingValue}</span>
+			<div className={styles['rating__value']}>{ratingValue}</div>
 		</div>
 	);
 }

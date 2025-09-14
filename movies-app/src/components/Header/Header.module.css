@@ -1,7 +1,18 @@
 .header {
 	font-weight: var(--font-weight-bold);
-	font-size: 64px;
 	color: var(--color-headling-text);
 	line-height: 125%;
 	margin: 0;
+}
+
+.small {
+	font-size: var(--font-size-small);
+}
+
+.medium {
+	font-size: var(--font-size-medium);
+}
+
+.big {
+	font-size: var(--font-size-big);
 }

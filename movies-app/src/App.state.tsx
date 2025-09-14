@@ -10,7 +10,7 @@ type UserInfo = {
 export function usersReducer(state: unknown, action: {type: string, payload?: {name: string}}) {
   const loginKey = "users";
   let users: UserInfo[] =
-    JSON.parse(localStorage.getItem(loginKey) ?? "") ?? [];
+    JSON.parse(localStorage.getItem(loginKey) ?? "[]");
   switch (action.type) {
     case "login": {
       const userName = action.payload?.name ?? '';
