@@ -14,6 +14,8 @@ import axios, { AxiosError } from 'axios';
 import { PREFIX_URL } from './helpers/API';
 import { IMovieDescription, IMovieDetails, MovieDetails } from './interfaces/movies.interface';
 import RequiredAuth from './helpers/RequiredAuth';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
  const router = createBrowserRouter([
    {
@@ -88,10 +90,12 @@ import RequiredAuth from './helpers/RequiredAuth';
  ]); 
 createRoot(document.getElementById("root") as Element).render(
   <StrictMode>
-    <UserContextProvider>
-      <MoviesContextProvider>
-        <RouterProvider router={router} />
-      </MoviesContextProvider>
-    </UserContextProvider>
+    <Provider store={store}>
+      <UserContextProvider>
+        <MoviesContextProvider>
+          <RouterProvider router={router} />
+        </MoviesContextProvider>
+      </UserContextProvider>
+    </Provider>
   </StrictMode>
 );

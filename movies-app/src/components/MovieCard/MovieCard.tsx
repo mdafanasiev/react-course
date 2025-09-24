@@ -4,25 +4,36 @@ import Rating from '../Rating/Rating';
 import { MovieCardProps } from './MovieCard.props';
 import MovieCover from '../MovieCover/MovieCover';
 import { MouseEvent, useContext } from 'react';
-import { MoviesContext } from '../../context/movies.context';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import { favoritesActions } from '../../store/favorites.slice';
+import { favState } from '../../store/storage';
+import { UserContext } from '../../context/user.context';
 
 function MovieCard( { movie } : MovieCardProps ) {
 	const title = movie.title;
 	const image = movie.image;
-	const inFavorites = movie.inFavorites;
 	const rating = movie.rating;
 	const id = movie.id;
-
-	const { movies, setMovies } = useContext(MoviesContext);
-
-	const favouritesHandler = function(e: MouseEvent) {
-		const _movies = [...movies];
-		const mv = _movies.find((mv) => mv.id === id);
-		if (mv) {
-			mv.inFavorites = !mv.inFavorites;
+	const dispatch = useDispatch<AppDispatch>();
+	const { userName } = useContext(UserContext);
+	const inFavorites = useSelector((s: RootState) => { 
+		let result = false;
+		const userFavs = s.favorites.find((fav) => fav.username === userName);
+		if (userFavs) {
+			result = userFavs.favList.some((mv) => mv.id === movie.id);
 		}
-		setMovies!(_movies);
+		return result;
+	});
+	
+	const favouritesHandler = function(e: MouseEvent) {
+		if (inFavorites) {
+			dispatch(favoritesActions.removeFromFavorites({ username: userName, movieID: id}));
+		}
+		else {
+			dispatch(favoritesActions.addToFavorites({ username: userName, movie }));
+		}
 	}
 
 	return (
@@ -37,7 +48,7 @@ function MovieCard( { movie } : MovieCardProps ) {
       </div>
       <div className={styles["movie-card__desc"]}>
         <div className={styles["movie-card__desc__title"]}>{title}</div>
-        <Favourite inFavorites={inFavorites ?? false} onClick={favouritesHandler} />
+        <Favourite inFavorites={inFavorites} onClick={favouritesHandler} />
       </div>
     </div>
   );
