@@ -23,8 +23,7 @@ function Search() {
 			const { data } = await axios.get<IMovies>(`${PREFIX_URL}/?q=${searchInput.current?.value}`);	
 			const moviesOriginal = data.description;
 			const movies: (MovieCardProps["movie"])[] = [];
-			moviesOriginal.forEach((mv) => movies.push({id: mv['#IMDB_ID'], title: mv['#TITLE'], image: mv['#IMG_POSTER'], rating: mv['#RANK'],
-				inFavorites: false, releaseDate: mv['#YEAR']
+			moviesOriginal.forEach((mv) => movies.push({id: mv['#IMDB_ID'], title: mv['#TITLE'], image: mv['#IMG_POSTER'], rating: mv['#RANK'], releaseDate: mv['#YEAR']
 			}));
 			setMovies!(movies);
 		} catch (e) {

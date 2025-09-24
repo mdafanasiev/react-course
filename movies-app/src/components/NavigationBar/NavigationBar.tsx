@@ -4,10 +4,19 @@ import NavigationElement from '../NavigationElement/NavigationElement';
 import NavigationList from '../NavigationList/NavigationList';
 import { UserContext } from '../../context/user.context';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 
 function NavigationBar() {
 	const { userName, setUserName } = useContext(UserContext);
+  const favCount = useSelector((s: RootState) => {
+    const userFavs = s.favorites.find((fav) => fav.username === userName);
+    if (userFavs) {
+      return userFavs.favList.length;
+    }
+    return 0;
+  });
 	type UserInfo = {
       name: string;
       isLogged: boolean;
@@ -53,10 +62,14 @@ function NavigationBar() {
         <NavLink to="/">
           <NavigationElement text="Поиск фильмов" />
         </NavLink>
-        <NavLink to="/favorites">
-          <NavigationElement text="Мои фильмы" />
-        </NavLink>
-
+        <div className={styles.fav}>
+          <NavLink to="/favorites">
+            <NavigationElement text="Мои фильмы" />
+          </NavLink>
+          {favCount > 0 && (
+            <div className={styles["fav-count"]}>{favCount}</div>
+          )}
+        </div>
         {userName === "" ? (
           <div className={styles.login}>
             <NavLink to="/login">

@@ -16,3 +16,21 @@
 	height: 24px;
 }
 
+.fav {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	justify-content: center;
+}
+.fav-count {
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
+	background-color: #7b6ef6;
+	font-weight: var(---font-weight-bold);
+	font-size: var(--font-size-small);
+	line-height: 171%;
+	letter-spacing: 0.02em;
+	color: var(--color-active-link);
+	text-align: center;
+}

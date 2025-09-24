@@ -1,20 +1,23 @@
 import { useContext } from "react";
 import Header from "../../components/Header/Header";
 import Body from "../../components/Layout/Body/Body";
-import { MoviesContext } from "../../context/movies.context";
 import MainContent from "../../components/Layout/MainContent/MainContent";
 import MoviesCardList from "../../components/MoviesCardList/MoviesCardList";
 import MovieCard from "../../components/MovieCard/MovieCard";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { UserContext } from "../../context/user.context";
 
 function Favorites() {
-  const { movies} = useContext(MoviesContext);
+   const { userName } = useContext(UserContext);
+   const favs = useSelector((s: RootState) => s.favorites.find((fav) => fav.username === userName)?.favList ?? []);
   return (
     <Body>
       <Header appearance="big" title="Избранное" />
       <MainContent>
         <MoviesCardList>
-          {movies.filter(mv => mv.inFavorites).map((mv) => (
-              <MovieCard movie={mv} key={mv.id} />
+          {favs.map((fav) => (
+              <MovieCard movie={fav} key={fav.id} />
           ))}
         </MoviesCardList>
       </MainContent>
