@@ -6,11 +6,20 @@ import MoviesCardList from "../../components/MoviesCardList/MoviesCardList";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { UserContext } from "../../context/user.context";
 
 function Favorites() {
-   const { userName } = useContext(UserContext);
-   const favs = useSelector((s: RootState) => s.favorites.find((fav) => fav.username === userName)?.favList ?? []);
+  const username = useSelector((s: RootState) => {
+    const loggedUser = s.users.find((user) => user.isLogged);
+    if (loggedUser) {
+      return loggedUser.name;
+    }
+    return "";
+  });
+
+   const favs = useSelector(
+     (s: RootState) =>
+       s.favorites.find((fav) => fav.username === username)?.favList ?? []
+   );
   return (
     <Body>
       <Header appearance="big" title="Избранное" />

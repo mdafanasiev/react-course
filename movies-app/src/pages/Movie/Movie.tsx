@@ -3,24 +3,30 @@ import TextArea from "../../components/TextArea/TextArea";
 import styles from './Movie.module.css'
 import Header from "../../components/Header/Header";
 import Body from "../../components/Layout/Body/Body";
-import { MouseEvent, useContext } from "react";
+import { MouseEvent } from "react";
 import MovieCover from "../../components/MovieCover/MovieCover";
 import Rating from "../../components/Rating/Rating";
 import Favourite from "../../components/Favourite/Favourite";
 import MovieInfo from "../../components/MovieInfo/MovieInfo";
 import { MovieDetails } from "../../interfaces/movies.interface";
-import { UserContext } from "../../context/user.context";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { favoritesActions } from "../../store/favorites.slice";
 
 function Movie() {
   const movie = useLoaderData() as MovieDetails;
-  const { userName } = useContext(UserContext);
+  const username = useSelector((s: RootState) => {
+    const loggedUser = s.users.find((user) => user.isLogged);
+    if (loggedUser) {
+      return loggedUser.name;
+    }
+    return "";
+  });
+
   const dispatch = useDispatch<AppDispatch>();
 	const inFavorites = useSelector((s: RootState) => { 
 		let result = false;
-		const userFavs = s.favorites.find((fav) => fav.username === userName);
+		const userFavs = s.favorites.find((fav) => fav.username === username);
 		if (userFavs) {
 			result = userFavs.favList.some((mv) => mv.id === movie.id);
 		}
@@ -29,10 +35,15 @@ function Movie() {
   
    const favouritesHandler = function(e: MouseEvent) {
     if (inFavorites) {
-      dispatch(favoritesActions.removeFromFavorites({ username: userName, movieID: movie.id}));
+      dispatch(
+        favoritesActions.removeFromFavorites({
+          username: username,
+          movieID: movie.id,
+        })
+      );
     }
     else {
-      dispatch(favoritesActions.addToFavorites({ username: userName, movie }));
+      dispatch(favoritesActions.addToFavorites({ username: username, movie }));
     }
   }
 
@@ -107,37 +118,6 @@ function getDuration(duration: string) {
     .replace("H", " час ")
     .replace("M", " минут ")
     .replace("S", " секунд ");
-
-  /* const ruOrdinalRules = new Intl.PluralRules("ru", { type: "cardinal" });
-  console.log(ruOrdinalRules);
-  
-  const suffixes = {
-    H: new Map([
-      ["one", "час"],
-      ["two", "часа"],
-      ["few", "часов"],
-      ["other", "часов"],
-    ]),
-    M: new Map([
-      ["one", "минута"],
-      ["two", "минуты"],
-      ["few", "минут"],
-      ["other", "минут"],
-    ]),
-    S: new Map([
-      ["one", "секунда"],
-      ["two", "секунды"],
-      ["few", "секунд"],
-      ["other", "секунд"],
-    ]),
-  };
-
-
-  const formatOrdinals = (n: number, type: 'H' | 'M' | 'S') => {
-    const rule = ruOrdinalRules.select(n);
-    const suffix = suffixes[type].get(rule);
-    return `${n} ${suffix}`;
-  }; */
 
   return res;
 }

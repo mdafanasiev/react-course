@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import {createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Head from './components/Layout/Head/Head';
-import { UserContextProvider } from './context/user.context';
 import Favorites from './pages/Favorites/Favorites';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import { MoviesContextProvider } from './context/movies.context';
@@ -91,11 +90,9 @@ import { store } from './store/store';
 createRoot(document.getElementById("root") as Element).render(
   <StrictMode>
     <Provider store={store}>
-      <UserContextProvider>
         <MoviesContextProvider>
           <RouterProvider router={router} />
         </MoviesContextProvider>
-      </UserContextProvider>
     </Provider>
   </StrictMode>
 );
