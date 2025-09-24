@@ -1,48 +1,23 @@
 
-import { RefObject, useContext, useRef } from "react";
+import { useRef } from "react";
 import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
 import styles from "./LoginPage.module.css";
-import { UserContext } from "../../context/user.context";
-import { UserInfo } from "../../interfaces/user.interface";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/store";
+import { userActions } from "../../store/user.slice";
 
 function LoginPage() {
   const title = "Вход";
-  const { setUserName } = useContext(UserContext);
-
+  const dispatch = useDispatch<AppDispatch>();
   const inputRef = useRef<HTMLInputElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
 
 
   const login = function () {
-    const loginKey: string = "users";
     const username = inputRef.current ? inputRef.current.value : "";
-
-    let users: UserInfo[];
-    const items = localStorage.getItem(loginKey);
-
-    if (items) users = JSON.parse(items);
-    else users = [];
-
-    let currentUser = users.find((user) => user.name === username);
-
-    if (currentUser) {
-      users.map((user) =>
-        user === currentUser ? (user.isLogged = true) : (user.isLogged = false)
-      );
-      localStorage.setItem(loginKey, JSON.stringify(users));
-    } else {
-      currentUser = { name: username, isLogged: true };
-      users.push(currentUser);
-      users.map((user) => {
-        if (user !== currentUser) user.isLogged = false;
-      });
-      localStorage.setItem(loginKey, JSON.stringify(users));
-    }
-
-    setUserName!(username);
-
+    dispatch(userActions.login({ username }));
     inputRef.current!.value = "";
   };
 
