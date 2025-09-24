@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import Header from "../../components/Header/Header";
 import Body from "../../components/Layout/Body/Body";
 import MainContent from "../../components/Layout/MainContent/MainContent";
