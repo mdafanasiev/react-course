@@ -7,12 +7,12 @@ import { MouseEvent, useContext } from 'react';
 import { MoviesContext } from '../../context/movies.context';
 import { Link } from 'react-router-dom';
 
-function MovieCard( { cardData }: MovieCardProps ) {
-	const title = cardData.title;
-	const filename = cardData.filename;
-	const inFavourites = cardData.inFavourites;
-	const rating = cardData.rating;
-	const id = cardData.id;
+function MovieCard( { movie } : MovieCardProps ) {
+	const title = movie.title;
+	const image = movie.image;
+	const inFavorites = movie.inFavorites;
+	const rating = movie.rating;
+	const id = movie.id;
 
 	const { movies, setMovies } = useContext(MoviesContext);
 
@@ -20,7 +20,7 @@ function MovieCard( { cardData }: MovieCardProps ) {
 		const _movies = [...movies];
 		const mv = _movies.find((mv) => mv.id === id);
 		if (mv) {
-			mv.inFavourites = !mv.inFavourites;
+			mv.inFavorites = !mv.inFavorites;
 		}
 		setMovies!(_movies);
 	}
@@ -28,8 +28,8 @@ function MovieCard( { cardData }: MovieCardProps ) {
 	return (
     <div className={styles["movie-card"]}>
       <div className={styles["movie-card__cover"]}>
-        <Link to={`/movie/${cardData.id}`}>
-          <MovieCover size="small" path={filename} />
+        <Link to={`/movie/${id}`}>
+          <MovieCover size="small" path={image ?? ""} />
         </Link>
         <div className={styles["movie-card__cover__rating-popup"]}>
           <Rating ratingValue={rating} />
@@ -37,7 +37,7 @@ function MovieCard( { cardData }: MovieCardProps ) {
       </div>
       <div className={styles["movie-card__desc"]}>
         <div className={styles["movie-card__desc__title"]}>{title}</div>
-        <Favourite inFavourites={inFavourites} onClick={favouritesHandler} />
+        <Favourite inFavorites={inFavorites ?? false} onClick={favouritesHandler} />
       </div>
     </div>
   );

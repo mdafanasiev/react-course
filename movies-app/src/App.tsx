@@ -5,11 +5,11 @@ import Search from './components/Search/Search';
 import MainContent from './components/Layout/MainContent/MainContent';
 import MovieCard from './components/MovieCard/MovieCard';
 import MoviesCardList from './components/MoviesCardList/MoviesCardList';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { MoviesContext } from './context/movies.context';
-import { Link } from 'react-router-dom';
+
 function App() {	
-	const { movies, setMovies } = useContext(MoviesContext);
+	const { movies } = useContext(MoviesContext);
 
 	return (
     <Body>
@@ -18,10 +18,8 @@ function App() {
       </UpperBody>
       <MainContent>
         <MoviesCardList>
-          {movies.map((cardData) => (
-            // <Link to={`/movie/${cardData.id}`} key={cardData.id}>
-            <MovieCard key={cardData.id} cardData={cardData} />
-            //  </Link>
+          {movies.map((mv) => (
+            <MovieCard key={mv.id} movie={mv} />
           ))}
         </MoviesCardList>
       </MainContent>

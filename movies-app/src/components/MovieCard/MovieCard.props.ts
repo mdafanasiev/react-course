@@ -1,9 +1,10 @@
 export interface MovieCardProps {
-  cardData: {
-    id: number,
-    title: string;
-    filename: string;
-    inFavourites: boolean;
-    rating: number
+  movie: {
+    id: string,
+    title: string,
+    image?: string,
+    inFavorites?: boolean,
+    rating: number,
+    releaseDate?: number
   }
 }

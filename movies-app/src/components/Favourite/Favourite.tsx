@@ -2,8 +2,8 @@ import styles from './Favourite.module.css';
 import cn from 'classnames';
 import { FavouriteProps } from './Favourite.props';
 
-function Favourite({ inFavourites, ...props }: FavouriteProps) {
-  if (inFavourites) {
+function Favourite({ inFavorites, ...props }: FavouriteProps) {
+  if (inFavorites) {
     return (
       <div className={styles.favourite}>
         <button className={styles["fav-button"]} {...props}>

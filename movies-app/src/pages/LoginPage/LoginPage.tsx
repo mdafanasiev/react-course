@@ -5,6 +5,7 @@ import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
 import styles from "./LoginPage.module.css";
 import { UserContext } from "../../context/user.context";
+import { UserInfo } from "../../interfaces/user.interface";
 
 function LoginPage() {
   const title = "Вход";
@@ -12,10 +13,7 @@ function LoginPage() {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
-  type UserInfo = {
-    name: string;
-    isLogged: boolean;
-  };
+
 
   const login = function () {
     const loginKey: string = "users";
